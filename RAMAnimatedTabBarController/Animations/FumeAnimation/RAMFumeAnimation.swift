@@ -59,7 +59,7 @@ public class RAMFumeAnimation : RAMItemAnimation {
         if let iconImage = icon.image {
             let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
             icon.image = renderImage
-            icon.tintColor = textSelectedColor
+            icon.tintColor = iconSelectedColor
         }
     }
 

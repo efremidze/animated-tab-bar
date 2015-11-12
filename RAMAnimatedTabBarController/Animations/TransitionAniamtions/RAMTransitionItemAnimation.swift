@@ -58,7 +58,7 @@ public class RAMTransitionItemAniamtions : RAMItemAnimation {
 
     func selectedColor(icon : UIImageView, textLabel : UILabel) {
 
-        if let iconImage = icon.image where iconSelectedColor != nil {
+        if let iconImage = icon.image {
             let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
             icon.image = renderImage
             icon.tintColor = iconSelectedColor
@@ -68,9 +68,9 @@ public class RAMTransitionItemAniamtions : RAMItemAnimation {
     }
 }
 
-class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromLeft
@@ -78,27 +78,27 @@ class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
 }
 
 
-class RAMFlipRightTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipRightTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromRight
     }
 }
 
-class RAMFlipTopTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipTopTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromTop
     }
 }
 
-class RAMFlipBottomTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipBottomTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromBottom

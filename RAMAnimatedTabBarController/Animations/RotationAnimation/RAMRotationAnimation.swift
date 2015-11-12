@@ -53,7 +53,7 @@ public class RAMRotationAnimation : RAMItemAnimation {
         if let iconImage = icon.image {
             let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
             icon.image = renderImage
-            icon.tintColor = textSelectedColor
+            icon.tintColor = iconSelectedColor
         }
     }
 
@@ -80,18 +80,18 @@ public class RAMRotationAnimation : RAMItemAnimation {
     }
 }
 
-class RAMLeftRotationAnimation : RAMRotationAnimation {
+public class RAMLeftRotationAnimation : RAMRotationAnimation {
 
-    override init() {
+    public override init() {
         super.init()
         direction = RAMRotationDirection.Left
     }
 }
 
 
-class RAMRightRotationAnimation : RAMRotationAnimation {
+public class RAMRightRotationAnimation : RAMRotationAnimation {
 
-    override init() {
+    public override init() {
         super.init()
         direction = RAMRotationDirection.Right
     }
