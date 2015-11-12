@@ -50,15 +50,9 @@ public class RAMAnimatedTabBarController: UITabBarController {
 
 // MARK: life circle
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
-        let containers = createViewContainers()
-
-        createCustomIcons(containers)
-    }
-
-    public func setupContainers() {
         let containers = createViewContainers()
 
         createCustomIcons(containers)
