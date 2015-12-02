@@ -23,7 +23,7 @@
 import UIKit
 import QuartzCore
 
-class RAMFrameItemAnimation: RAMItemAnimation {
+public class RAMFrameItemAnimation: RAMItemAnimation {
 
     var animationImages : Array<CGImage> = Array()
 
@@ -32,7 +32,7 @@ class RAMFrameItemAnimation: RAMItemAnimation {
     @IBInspectable var isDeselectAnimation: Bool = true
     @IBInspectable var imagesPath: String!
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
 
         let path = NSBundle.mainBundle().pathForResource(imagesPath, ofType:"plist")
 
@@ -42,7 +42,7 @@ class RAMFrameItemAnimation: RAMItemAnimation {
         createImagesArray(animationImagesName)
 
         // selected image
-        var selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
+        let selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
         selectedImage = UIImage(named: selectedImageName)
     }
 
@@ -54,13 +54,13 @@ class RAMFrameItemAnimation: RAMItemAnimation {
         }
     }
 
-    override func playAnimation(icon : UIImageView, textLabel : UILabel) {
+    public override func playAnimation(icon : UIImageView, textLabel : UILabel) {
 
         playFrameAnimation(icon, images:animationImages)
         textLabel.textColor = textSelectedColor
     }
 
-    override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
+    public override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
         if isDeselectAnimation {
             playFrameAnimation(icon, images:animationImages.reverse())
         }
@@ -68,19 +68,19 @@ class RAMFrameItemAnimation: RAMItemAnimation {
         textLabel.textColor = defaultTextColor
     }
 
-    override func selectedState(icon : UIImageView, textLabel : UILabel) {
+    public override func selectedState(icon : UIImageView, textLabel : UILabel) {
         icon.image = selectedImage
         textLabel.textColor = textSelectedColor
     }
 
     func playFrameAnimation(icon : UIImageView, images : Array<CGImage>) {
-        var frameAnimation = CAKeyframeAnimation(keyPath: "contents")
+        let frameAnimation = CAKeyframeAnimation(keyPath: "contents")
         frameAnimation.calculationMode = kCAAnimationDiscrete
         frameAnimation.duration = NSTimeInterval(duration)
         frameAnimation.values = images
-        frameAnimation.repeatCount = 1;
-        frameAnimation.removedOnCompletion = false;
-        frameAnimation.fillMode = kCAFillModeForwards;
+        frameAnimation.repeatCount = 1
+        frameAnimation.removedOnCompletion = false
+        frameAnimation.fillMode = kCAFillModeForwards
         icon.layer.addAnimation(frameAnimation, forKey: "frameAnimation")
     }
 }

@@ -23,27 +23,31 @@
 import UIKit
 
 
-class RAMBounceAnimation : RAMItemAnimation {
+public class RAMBounceAnimation : RAMItemAnimation {
 
-    override func playAnimation(icon : UIImageView, textLabel : UILabel) {
+    public override func playAnimation(icon : UIImageView, textLabel : UILabel) {
         playBounceAnimation(icon)
         textLabel.textColor = textSelectedColor
     }
 
-    override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
+    public override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
         textLabel.textColor = defaultTextColor
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = defaultTextColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = defaultTextColor
+        }
     }
 
-    override func selectedState(icon : UIImageView, textLabel : UILabel) {
+    public override func selectedState(icon : UIImageView, textLabel : UILabel) {
         textLabel.textColor = textSelectedColor
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = textSelectedColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = iconSelectedColor
+        }
     }
 
     func playBounceAnimation(icon : UIImageView) {
@@ -55,9 +59,11 @@ class RAMBounceAnimation : RAMItemAnimation {
 
         icon.layer.addAnimation(bounceAnimation, forKey: "bounceAnimation")
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = iconSelectedColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = iconSelectedColor
+        }
     }
 
 }

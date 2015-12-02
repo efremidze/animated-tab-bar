@@ -22,7 +22,7 @@
 
 import UIKit
 
-class RAMTransitionItemAniamtions : RAMItemAnimation {
+public class RAMTransitionItemAniamtions : RAMItemAnimation {
 
     var transitionOptions : UIViewAnimationOptions!
 
@@ -32,23 +32,25 @@ class RAMTransitionItemAniamtions : RAMItemAnimation {
         transitionOptions = UIViewAnimationOptions.TransitionNone
     }
 
-    override func playAnimation(icon : UIImageView, textLabel : UILabel) {
+    public override func playAnimation(icon : UIImageView, textLabel : UILabel) {
 
         selectedColor(icon, textLabel: textLabel)
 
         UIView.transitionWithView(icon, duration: NSTimeInterval(duration), options: transitionOptions, animations: {
-            }, completion: { finished in
+            }, completion: { _ in
         })
     }
 
-    override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
+    public override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
 
-        var renderImage = icon.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        icon.image = renderImage;
-        textLabel.textColor = defaultTextColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysOriginal)
+            icon.image = renderImage
+            textLabel.textColor = defaultTextColor
+        }
     }
 
-    override func selectedState(icon : UIImageView, textLabel : UILabel) {
+    public override func selectedState(icon : UIImageView, textLabel : UILabel) {
 
         selectedColor(icon, textLabel: textLabel)
     }
@@ -56,9 +58,9 @@ class RAMTransitionItemAniamtions : RAMItemAnimation {
 
     func selectedColor(icon : UIImageView, textLabel : UILabel) {
 
-        if iconSelectedColor != nil {
-            var renderImage = icon.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-            icon.image = renderImage;
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
             icon.tintColor = iconSelectedColor
         }
 
@@ -66,9 +68,9 @@ class RAMTransitionItemAniamtions : RAMItemAnimation {
     }
 }
 
-class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromLeft
@@ -76,27 +78,27 @@ class RAMFlipLeftTransitionItemAniamtions : RAMTransitionItemAniamtions {
 }
 
 
-class RAMFlipRightTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipRightTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromRight
     }
 }
 
-class RAMFlipTopTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipTopTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromTop
     }
 }
 
-class RAMFlipBottomTransitionItemAniamtions : RAMTransitionItemAniamtions {
+public class RAMFlipBottomTransitionItemAniamtions : RAMTransitionItemAniamtions {
 
-    override init() {
+    public override init() {
         super.init()
 
         transitionOptions = UIViewAnimationOptions.TransitionFlipFromBottom

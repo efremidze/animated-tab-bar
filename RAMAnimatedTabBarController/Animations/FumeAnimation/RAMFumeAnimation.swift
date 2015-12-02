@@ -24,37 +24,43 @@
 import UIKit
 
 
-class RAMFumeAnimation : RAMItemAnimation {
+public class RAMFumeAnimation : RAMItemAnimation {
 
-    override func playAnimation(icon : UIImageView, textLabel : UILabel) {
+    public override func playAnimation(icon : UIImageView, textLabel : UILabel) {
         playMoveIconAnimation(icon, values:[icon.center.y, icon.center.y + 4.0])
         playLabelAnimation(textLabel)
         textLabel.textColor = textSelectedColor
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = textSelectedColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = textSelectedColor
+        }
     }
 
-    override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
+    public override func deselectAnimation(icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor) {
         playMoveIconAnimation(icon, values:[icon.center.y + 4.0, icon.center.y])
         playDeselectLabelAnimation(textLabel)
         textLabel.textColor = defaultTextColor
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = defaultTextColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = defaultTextColor
+        }
     }
 
-    override func selectedState(icon : UIImageView, textLabel : UILabel) {
+    public override func selectedState(icon : UIImageView, textLabel : UILabel) {
 
         playMoveIconAnimation(icon, values:[icon.center.y + 8.0])
         textLabel.alpha = 0
         textLabel.textColor = textSelectedColor
       
-        let renderImage = icon.image?.imageWithRenderingMode(.AlwaysTemplate)
-        icon.image = renderImage
-        icon.tintColor = textSelectedColor
+        if let iconImage = icon.image {
+            let renderImage = iconImage.imageWithRenderingMode(.AlwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = iconSelectedColor
+        }
     }
 
     func playMoveIconAnimation(icon : UIImageView, values: [AnyObject]) {
